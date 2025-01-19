@@ -50,9 +50,14 @@ Pour chaque exercice :
 - [ ] 1.1 Modifier le composant ProductSearch pour utiliser la recherche
 - [ ] 1.2 Implémenter le debounce sur la recherche
 - [ ] 1.3 Documenter votre solution ici
+- [ ] 1.1 Modifier le composant ProductSearch pour utiliser la recherche
+- [ ] 1.2 Implémenter le debounce sur la recherche
+- [ ] 1.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 1 :_
 ```
+Expliquez votre solution ici
+[Ajoutez vos captures d'écran]
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
@@ -63,9 +68,14 @@ Expliquez votre solution ici
 - [ ] 2.1 Créer le LanguageContext
 - [ ] 2.2 Ajouter le sélecteur de langue
 - [ ] 2.3 Documenter votre solution ici
+- [ ] 2.1 Créer le LanguageContext
+- [ ] 2.2 Ajouter le sélecteur de langue
+- [ ] 2.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 2 :_
 ```
+Expliquez votre solution ici
+[Ajoutez vos captures d'écran]
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
@@ -76,9 +86,14 @@ Expliquez votre solution ici
 - [ ] 3.1 Créer le hook useDebounce
 - [ ] 3.2 Créer le hook useLocalStorage
 - [ ] 3.3 Documenter votre solution ici
+- [ ] 3.1 Créer le hook useDebounce
+- [ ] 3.2 Créer le hook useLocalStorage
+- [ ] 3.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 3 :_
 ```
+Expliquez votre solution ici
+[Ajoutez vos captures d'écran]
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
@@ -89,9 +104,14 @@ Expliquez votre solution ici
 - [ ] 4.1 Ajouter le bouton de rechargement
 - [ ] 4.2 Implémenter la pagination
 - [ ] 4.3 Documenter votre solution ici
+- [ ] 4.1 Ajouter le bouton de rechargement
+- [ ] 4.2 Implémenter la pagination
+- [ ] 4.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 4 :_
 ```
+Expliquez votre solution ici
+[Ajoutez vos captures d'écran]
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```

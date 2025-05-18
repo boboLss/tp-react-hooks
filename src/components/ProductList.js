@@ -1,19 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ThemeContext } from '../App';
 import useProductSearch from '../hooks/useProductSearch';
+import useDebounce from '../hooks/useDebounce';
 
-const ProductList = () => {
+const PRODUCTS_PER_PAGE = 6;
+
+const ProductList = ({ searchTerm }) => {
   const { isDarkTheme } = useContext(ThemeContext);
-  // TODO: Exercice 2.1 - Utiliser le LanguageContext pour les traductions
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
   
   const { 
     products, 
     loading, 
     error,
-    // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
-    // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
+    reload // Fonction de rechargement
   } = useProductSearch();
   
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Filtrage selon la recherche (insensible à la casse)
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+  );
+
+  // Pagination
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const startIdx = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(startIdx, startIdx + PRODUCTS_PER_PAGE);
+
+  // Réinitialiser la page si la recherche change ou si la liste change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, products]);
+
   if (loading) return (
     <div className="text-center my-4">
       <div className="spinner-border" role="status">
@@ -30,9 +49,19 @@ const ProductList = () => {
   
   return (
     <div>
-      {/* TODO: Exercice 4.1 - Ajouter le bouton de rechargement */}
+      <button
+        onClick={() => {
+          if (typeof reload === 'function') {
+            reload();
+            setCurrentPage(1);
+          }
+        }}
+        className="btn btn-secondary my-3"
+      >
+        Recharger
+      </button>
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {products.map(product => (
+        {paginatedProducts.map(product => (
           <div key={product.id} className="col">
             <div className={`card h-100 ${isDarkTheme ? 'bg-dark text-light' : ''}`}>
               {product.thumbnail && (
@@ -56,28 +85,25 @@ const ProductList = () => {
         ))}
       </div>
       
-      {/* TODO: Exercice 4.2 - Ajouter les contrôles de pagination */}
-      {/* Exemple de structure pour la pagination :
-      <nav className="mt-4">
-        <ul className="pagination justify-content-center">
-          <li className="page-item">
-            <button className="page-link" onClick={previousPage}>
-              Précédent
-            </button>
-          </li>
-          <li className="page-item">
-            <span className="page-link">
-              Page {currentPage} sur {totalPages}
-            </span>
-          </li>
-          <li className="page-item">
-            <button className="page-link" onClick={nextPage}>
-              Suivant
-            </button>
-          </li>
-        </ul>
-      </nav>
-      */}
+      <div className="pagination my-4">
+        <button
+          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+          className="btn btn-primary"
+        >
+          Précédent
+        </button>
+        <span className="mx-2">
+          Page {currentPage} sur {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+          className="btn btn-primary"
+        >
+          Suivant
+        </button>
+      </div>
     </div>
   );
 };
